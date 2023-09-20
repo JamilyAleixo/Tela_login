@@ -1,0 +1,107 @@
+import { createContext, useEffect, useState } from "react";
+// Importando createContext e outros hooks do React necessários.
+
+export const AuthContext = createContext({});
+// Criando um contexto chamado "AuthContext" vazio.
+
+export const AuthProvider = ({ children }) => {
+  // Criando um componente "AuthProvider" que recebe outros componentes (children).
+
+  const [user, setUser] = useState();
+  // Criando um estado "user" para armazenar informações do usuário.
+
+  useEffect(() => {
+    // UseEffect que é executado quando o componente é montado.
+
+    const userToken = localStorage.getItem("user_token");
+    const usersStorage = localStorage.getItem("users_bd");
+    // Obtendo informações do usuário armazenadas no localStorage.
+
+    if (userToken && usersStorage) {
+      // Verificando se existem informações de usuário no localStorage.
+
+      const hasUser = JSON.parse(usersStorage)?.filter(
+        (user) => user.email === JSON.parse(userToken).email
+      );
+      // Verificando se o usuário atualmente logado ainda existe no armazenamento.
+
+      if (hasUser) setUser(hasUser[0]);
+      // Definindo o estado "user" com as informações do usuário.
+    }
+  }, []);
+
+  const signin = (email, password) => {
+    // Função para fazer login do usuário.
+
+    const usersStorage = JSON.parse(localStorage.getItem("users_bd"));
+    // Obtendo informações de usuário armazenadas no localStorage.
+
+    const hasUser = usersStorage?.filter((user) => user.email === email);
+    // Verificando se há um usuário com o e-mail fornecido.
+
+    if (hasUser?.length) {
+      // Se um usuário com esse e-mail existir:
+
+      if (hasUser[0].email === email && hasUser[0].password === password) {
+        // Verificando se a senha fornecida corresponde à senha do usuário.
+
+        const token = Math.random().toString(36).substring(2);
+        localStorage.setItem("user_token", JSON.stringify({ email, token }));
+        // Gerando um token de usuário aleatório e armazenando-o no localStorage.
+
+        setUser({ email, password });
+        // Definindo o estado "user" com as informações do usuário.
+
+        return;
+      } else {
+        return "E-mail ou senha incorretos";
+      }
+    } else {
+      return "Usuário não cadastrado";
+    }
+  };
+
+  const signup = (email, password) => {
+    // Função para registrar um novo usuário.
+
+    const usersStorage = JSON.parse(localStorage.getItem("users_bd"));
+    // Obtendo informações de usuário armazenadas no localStorage.
+
+    const hasUser = usersStorage?.filter((user) => user.email === email);
+    // Verificando se já existe um usuário com o e-mail fornecido.
+
+    if (hasUser?.length) {
+      return "Já tem uma conta com esse E-mail";
+    }
+
+    let newUser;
+
+    if (usersStorage) {
+      newUser = [...usersStorage, { email, password }];
+    } else {
+      newUser = [{ email, password }];
+    }
+
+    localStorage.setItem("users_bd", JSON.stringify(newUser));
+    // Adicionando o novo usuário ao armazenamento.
+
+    return;
+  };
+
+  const signout = () => {
+    // Função para fazer logout do usuário.
+
+    setUser(null);
+    localStorage.removeItem("user_token");
+    // Removendo as informações do usuário do estado e do localStorage.
+  };
+
+  return (
+    <AuthContext.Provider
+      value={{ user, signed: !!user, signin, signup, signout }}
+    >
+      {children}
+    </AuthContext.Provider>
+  );
+  // Fornecendo o contexto "AuthContext" e suas funções para os componentes filhos.
+};

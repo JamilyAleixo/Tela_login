@@ -1,0 +1,45 @@
+import { Fragment } from "react";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
+// Importando componentes e hooks relacionados ao React Router.
+
+import useAuth from "../hooks/useAuth";
+// Importando o hook personalizado useAuth para acessar o contexto de autenticação.
+
+import Home from "../pages/Home";
+import Signin from "../pages/Signin";
+import Signup from "../pages/Signup";
+// Importando os componentes de páginas Home, Signin e Signup.
+
+const Private = ({ Item }) => {
+  const { signed } = useAuth();
+
+  return signed > 0 ? <Item /> : <Signin />;
+};
+// Um componente chamado "Private" que verifica se o usuário está autenticado (signed). 
+// Se autenticado, renderiza o componente "Item" (Home), caso contrário, redireciona para a página de login (Signin).
+
+const RoutesApp = () => {
+  return (
+    <BrowserRouter>
+      <Fragment>
+        <Routes>
+          <Route exact path="/home" element={<Private Item={Home} />} />
+          {/* Define uma rota protegida para a página Home. */}
+          
+          <Route path="/" element={<Signin />} />
+          {/* Define uma rota padrão para a página de login (Signin). */}
+          
+          <Route exact path="/signup" element={<Signup />} />
+          {/* Define uma rota para a página de registro (Signup). */}
+          
+          <Route path="*" element={<Signin />} />
+          {/* Define uma rota de fallback (curinga) que redireciona para a página de login (Signin) se nenhuma outra rota corresponder. */}
+        </Routes>
+      </Fragment>
+    </BrowserRouter>
+  );
+};
+// O componente "RoutesApp" configura as rotas do aplicativo usando o React Router.
+
+export default RoutesApp;
+// Exportando o componente "RoutesApp" para que ele possa ser utilizado no aplicativo.

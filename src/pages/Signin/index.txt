@@ -1,0 +1,104 @@
+import React, { useState } from "react";
+// Importando a biblioteca React e o hook useState.
+
+import Input from "../../components/Input";
+// Importando o componente Input.
+
+import Button from "../../components/Button";
+// Importando o componente Button.
+
+import * as C from "./styles";
+// Importando estilos específicos para este componente.
+
+import { Link, useNavigate } from "react-router-dom";
+// Importando o hook useNavigate do React Router para permitir a navegação entre as páginas.
+
+import useAuth from "../../hooks/useAuth";
+// Importando o hook personalizado useAuth para acessar o contexto de autenticação.
+
+const Signin = () => {
+  // Definindo um componente chamado "Signin".
+
+  const { signin } = useAuth();
+  // Utilizando o hook useAuth para acessar a função de login (signin) do contexto de autenticação.
+
+  const navigate = useNavigate();
+  // Usando a função useNavigate para permitir a navegação entre as páginas.
+
+  const [email, setEmail] = useState("");
+  const [senha, setSenha] = useState("");
+  const [error, setError] = useState("");
+  // Definindo estados para o e-mail, senha e mensagens de erro do formulário de login.
+
+  const handleLogin = () => {
+    // Função para lidar com o processo de login.
+
+    if (!email || !senha) {
+      setError("Preencha todos os campos");
+      return;
+    }
+    // Verificando se o e-mail e a senha foram preenchidos. Se não, exibe uma mensagem de erro.
+
+    const res = signin(email, senha);
+    // Chama a função de login (signin) com o e-mail e a senha fornecidos.
+
+    if (res) {
+      setError(res);
+      return;
+    }
+    // Se a função de login retornar uma mensagem de erro, exibe essa mensagem.
+
+    navigate("/home");
+    // Navega para a página "/home" após um login bem-sucedido.
+  };
+
+  return (
+    <C.Container>
+      {/* Renderizando um contêiner com estilos específicos. */}
+      <C.Label>Efetuar Login</C.Label>
+      {/* Renderizando um título "Efetuar Login". */}
+      <C.Content>
+        <Input
+          type="email"
+          placeholder="Digite seu E-mail"
+          value={email}
+          onChange={(e) => [setEmail(e.target.value), setError("")]}
+        />
+        {/* Renderizando um campo de entrada de e-mail com um componente Input. */}
+        <Input
+          type="password"
+          placeholder="Digite sua Senha"
+          value={senha}
+          onChange={(e) => [setSenha(e.target.value), setError("")]}
+        />
+
+      {/* Renderizando um campo de entrada de e-mail com um componente Input. */}
+      <Input
+        type="password"
+        placeholder="Digite sua Senha"
+        value={senha}
+        onChange={(e) => [setSenha(e.target.value), setError("")]}
+      />
+
+      {/* Renderizando um campo de entrada de senha com um componente Input. */}
+      <C.labelError>{error}</C.labelError>
+
+      {/* Renderizando mensagens de erro. */}
+      <Button Text="Entrar" onClick={handleLogin} />
+
+      {/* Renderizando um botão "Entrar" que chama a função handleLogin quando clicado. */}
+      <C.LabelSignup>
+        Não tem uma conta?
+        <C.Strong>
+          <Link to="/signup">&nbsp;Registre-se</Link>
+        </C.Strong>
+      </C.LabelSignup>
+
+      {/* Renderizando um link para a página de registro. */}
+      </C.Content>
+    </C.Container>
+  );
+};
+
+export default Signin;
+// Exportando o componente "Signin" para que ele possa ser usado em outras partes do aplicativo.

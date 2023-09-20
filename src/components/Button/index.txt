@@ -1,0 +1,20 @@
+import React from "react";
+// Importando a biblioteca React para criar componentes.
+
+import * as C from "./styles";
+// Importando algum código relacionado aos estilos do botão (provavelmente um arquivo de estilos).
+
+const Button = ({ Text, onClick, Type = "button" }) => {
+  // Definindo um componente chamado "Button" que recebe três props: Text, onClick e Type.
+
+  return (
+    <C.Button type={Type} onClick={onClick}>
+      {/* Renderizando o botão. O type e onClick são atribuídos às props passadas ao componente. */}
+      {Text}
+      {/* O texto do botão é renderizado aqui. */}
+    </C.Button>
+  );
+};
+
+export default Button;
+// Exportando o componente Button para que ele possa ser usado em outros lugares do aplicativo.

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="utf-8" />
+    <!-- Define a codificação de caracteres UTF-8 para a página. -->
+    
+    <link rel="icon" href="%PUBLIC_URL%/favicon.ico" />
+    <!-- Especifica o ícone que aparece na barra de título ou na aba do navegador. -->
+
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <!-- Configura a viewport para ajustar automaticamente o conteúdo à largura do dispositivo. -->
+
+    <meta name="theme-color" content="#000000" />
+    <!-- Define a cor do tema (usada em dispositivos móveis) para a cor preta (#000000). -->
+
+    <meta
+      name="description"
+      content="Web site created using create-react-app"
+    />
+    <!-- Fornecer uma breve descrição do site para mecanismos de busca e redes sociais. -->
+
+    <link rel="apple-touch-icon" href="%PUBLIC_URL%/logo192.png" />
+    <!-- Especifica o ícone que é usado quando o site é adicionado à tela inicial em dispositivos Apple. -->
+
+    <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
+    <!-- Referência ao arquivo de manifesto que fornece informações sobre o aplicativo em dispositivos móveis. -->
+
+    <title>Tela de login</title>
+    <!-- Define o título da página que aparece na aba do navegador. -->
+  </head>
+  <body>
+    <noscript>You need to enable JavaScript to run this app.</noscript>
+    <!-- Uma mensagem exibida quando o JavaScript está desativado no navegador. -->
+
+    <div id="root"></div>
+    <!-- Um elemento <div> com o id "root" é usado como o ponto de entrada para o aplicativo React.
+    Ele é onde todo o conteúdo dinâmico do aplicativo será renderizado. -->
+  </body>
+</html>

@@ -1,0 +1,41 @@
+import styled from "styled-components";
+// Importando a biblioteca styled-components para criar estilos em componentes React.
+
+export const Button = styled.button`
+  // Definindo um componente estilizado chamado "Button" que se aplica a elementos do tipo <button>.
+
+  padding: 16px 20px;
+  // Adicionando preenchimento (espaçamento interno) ao botão.
+
+  outline: none;
+  // Removendo a borda de destaque quando o botão é clicado.
+
+  border: none;
+  // Removendo a borda do botão.
+
+  border-radius: 5px;
+  // Arredondando os cantos do botão.
+
+  width: 100%;
+  // Definindo a largura do botão como 100% do seu contêiner.
+
+  cursor: pointer;
+  // Alterando o cursor do mouse para indicar que o botão é clicável.
+
+  background-color: #046ee5;
+  // Definindo a cor de fundo do botão.
+
+  color: white;
+  // Definindo a cor do texto do botão.
+
+  font-weight: 600;
+  // Definindo o peso da fonte do texto do botão.
+
+  font-size: 16px;
+  // Definindo o tamanho da fonte do texto do botão.
+
+  max-width: 350px;
+  // Definindo a largura máxima do botão para 350 pixels.
+`;
+
+// Exportando o componente estilizado "Button" para que ele possa ser usado em outros lugares do aplicativo.

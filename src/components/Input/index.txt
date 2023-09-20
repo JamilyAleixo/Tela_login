@@ -1,0 +1,21 @@
+import React from "react";
+// Importando a biblioteca React para criar componentes.
+
+import * as C from "./styles";
+// Importando algum código relacionado aos estilos do input (provavelmente um arquivo de estilos).
+
+const Input = ({ type, placeholder, value, onChange }) => {
+  // Definindo um componente chamado "Input" que recebe quatro props: type, placeholder, value e onChange.
+
+  return (
+    <C.Input
+      value={value}
+      onChange={onChange}
+      type={type}
+      placeholder={placeholder}
+    />
+  );
+};
+
+export default Input;
+// Exportando o componente Input para que ele possa ser usado em outros lugares do aplicativo.

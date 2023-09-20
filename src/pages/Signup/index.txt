@@ -1,0 +1,104 @@
+import React, { useState } from "react";
+// Importando React e o hook useState para gerenciar estados no componente.
+import Input from "../../components/Input";
+// Importando o componente Input de outro arquivo.
+import Button from "../../components/Button";
+// Importando o componente Button de outro arquivo.
+import * as C from "./styles";
+// Importando estilos definidos em um arquivo de estilos.
+import { Link, useNavigate } from "react-router-dom";
+// Importando o Link para criar links entre as páginas e o hook useNavigate para navegação.
+import useAuth from "../../hooks/useAuth";
+// Importando o hook useAuth para gerenciar a autenticação do usuário.
+
+const Signup = () => {
+  const [email, setEmail] = useState("");
+  // Criando um estado "email" para armazenar o valor do campo de e-mail.
+  const [emailConf, setEmailConf] = useState("");
+  // Criando um estado "emailConf" para armazenar o valor do campo de confirmação de e-mail.
+  const [senha, setSenha] = useState("");
+  // Criando um estado "senha" para armazenar o valor do campo de senha.
+  const [error, setError] = useState("");
+  // Criando um estado "error" para armazenar mensagens de erro.
+  const navigate = useNavigate();
+  // Obtendo a função "navigate" do React Router para navegação entre as páginas.
+
+  const { signup } = useAuth();
+  // Obtendo a função "signup" do hook useAuth para registrar um novo usuário.
+
+  const handleSignup = () => {
+    // Função para lidar com o registro de um novo usuário.
+
+    if (!email || !emailConf || !senha) {
+      setError("Preencha todos os campos");
+      // Se algum campo estiver vazio, define uma mensagem de erro.
+      return;
+    } else if (email !== emailConf) {
+      setError("Os e-mails não são iguais");
+      // Se os e-mails não forem iguais, define uma mensagem de erro.
+      return;
+    }
+
+    const res = signup(email, senha);
+    // Chama a função "signup" para registrar o usuário com o e-mail e senha fornecidos.
+
+    if (res) {
+      setError(res);
+      // Se houver um erro no registro, define a mensagem de erro correspondente.
+      return;
+    }
+
+    alert("Usuário cadastrado com sucesso!");
+    // Exibe um alerta informando que o usuário foi cadastrado com sucesso.
+    navigate("/");
+    // Navega para a página inicial.
+  };
+
+  return (
+    <C.Container>
+      {/* Renderiza o contêiner principal do componente. */}
+      <C.Label>SISTEMA DE LOGIN</C.Label>
+      {/* Renderiza um rótulo ou título para a página. */}
+      <C.Content>
+        {/* Renderiza o conteúdo do formulário de registro. */}
+        <Input
+          type="email"
+          placeholder="Digite seu E-mail"
+          value={email}
+          onChange={(e) => [setEmail(e.target.value), setError("")]}
+        />
+        {/* Renderiza um campo de entrada de e-mail. */}
+        <Input
+          type="email"
+          placeholder="Confirme seu E-mail"
+          value={emailConf}
+          onChange={(e) => [setEmailConf(e.target.value), setError("")]}
+        />
+        {/* Renderiza um campo de confirmação de e-mail. */}
+        <Input
+          type="password"
+          placeholder="Digite sua Senha"
+          value={senha}
+          onChange={(e) => [setSenha(e.target.value), setError("")]}
+        />
+        {/* Renderiza um campo de entrada de senha. */}
+        <C.labelError>{error}</C.labelError>
+        {/* Renderiza mensagens de erro. */}
+        <Button Text="Inscrever-se" onClick={handleSignup} />
+        {/* Renderiza um botão para realizar o registro. */}
+        <C.LabelSignin>
+          {/* Renderiza um rótulo indicando que o usuário pode já ter uma conta. */}
+          Já tem uma conta?
+          <C.Strong>
+            {/* Renderiza um link para a página de login. */}
+            <Link to="/">&nbsp;Entre</Link>
+          </C.Strong>
+        </C.LabelSignin>
+      </C.Content>
+    </C.Container>
+  );
+};
+
+export default Signup;
+// Exporta o componente Signup para ser usado em outras partes da aplicação.
+

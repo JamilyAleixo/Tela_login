@@ -1,0 +1,23 @@
+import { createGlobalStyle } from "styled-components";
+// Importando a função createGlobalStyle do styled-components para criar estilos globais.
+
+const GlobalStyle = createGlobalStyle`
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  // Resetando todas as margens e preenchimentos para 0 e definindo a caixa-modelo como border-box.
+
+  body {
+    width: 100vw;
+    height: 100vh;
+    background-color: #f0f2f5;
+    font-family: Arial, Helvetica, sans-serif;
+  }
+  // Definindo estilos para o corpo (body) do documento HTML.
+`;
+// Criando um estilo global usando o template string e a função createGlobalStyle.
+
+export default GlobalStyle;
+// Exportando o estilo global para ser utilizado em seu aplicativo.

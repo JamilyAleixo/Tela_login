@@ -1,0 +1,15 @@
+import styled from "styled-components";
+// Importando a biblioteca styled-components para criar estilos em componentes React.
+
+export const Container = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  height: 100vh;
+  gap: 20px;
+`;
+// Definindo um componente estilizado chamado "Container" que se aplica a um elemento <div>.
+
+export const Title = styled.h2``;
+// Definindo um componente estilizado chamado "Title" que se aplica a um elemento <h2>.

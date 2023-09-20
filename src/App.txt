@@ -1,0 +1,24 @@
+import React from "react";
+// Importando a biblioteca React.
+
+import GlobalStyle from "./styles/global";
+// Importando o estilo global definido no arquivo "./styles/global".
+
+import { AuthProvider } from "./contexts/auth";
+// Importando o provedor de autenticação (AuthProvider) do contexto de autenticação.
+
+import RoutesApp from "./routes";
+// Importando as rotas definidas no arquivo "./routes".
+
+const App = () => (
+  <AuthProvider>
+    {/* Iniciando o provedor de autenticação, que envolverá todo o aplicativo. */}
+    <RoutesApp />
+    {/* Renderizando as rotas do aplicativo usando o componente RoutesApp. */}
+    <GlobalStyle />
+    {/* Aplicando o estilo global em todo o aplicativo. */}
+  </AuthProvider>
+);
+
+export default App;
+// Exportando o componente App como o componente principal do aplicativo.

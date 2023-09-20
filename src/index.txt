@@ -1,0 +1,11 @@
+import { createRoot } from "react-dom/client";
+// Importando a função createRoot do React DOM.
+
+import App from "./App";
+// Importando o componente App, que é o ponto de entrada principal do seu aplicativo React.
+
+const root = createRoot(document.querySelector("#root"));
+// Criando uma raiz (root) para a renderização do aplicativo React no elemento HTML com o id "root".
+
+root.render(<App />);
+// Renderizando o componente App dentro da raiz criada usando a função render.

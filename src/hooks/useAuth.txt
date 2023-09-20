@@ -1,0 +1,18 @@
+import { useContext } from "react";
+// Importando a função useContext do React.
+
+import { AuthContext } from "../contexts/auth";
+// Importando o contexto de autenticação (AuthContext) de algum lugar do seu projeto.
+
+const useAuth = () => {
+  // Criando um hook personalizado chamado "useAuth".
+
+  const context = useContext(AuthContext);
+  // Usando a função useContext para acessar o contexto de autenticação.
+
+  return context;
+  // Retornando o contexto de autenticação para que ele possa ser usado em componentes.
+};
+
+export default useAuth;
+// Exportando o hook personalizado "useAuth" para que ele possa ser importado e usado em outros lugares do seu projeto.

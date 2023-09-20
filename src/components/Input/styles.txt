@@ -1,0 +1,29 @@
+import styled from "styled-components";
+// Importando a biblioteca styled-components para criar estilos em componentes React.
+
+export const Input = styled.input`
+  // Definindo um componente estilizado chamado "Input" que se aplica a elementos do tipo <input>.
+
+  outline: none;
+  // Removendo a borda de destaque quando o input é clicado.
+
+  padding: 16px 20px;
+  // Adicionando preenchimento (espaçamento interno) ao input.
+
+  width: 100%;
+  // Definindo a largura do input como 100% do seu contêiner.
+
+  border-radius: 5px;
+  // Arredondando os cantos do input.
+
+  font-size: 16px;
+  // Definindo o tamanho da fonte do texto do input.
+
+  background-color: #f0f2f5;
+  // Definindo a cor de fundo do input.
+
+  border: none;
+  // Removendo a borda do input.
+`;
+
+// Exportando o componente estilizado "Input" para que ele possa ser usado em outros lugares do aplicativo.

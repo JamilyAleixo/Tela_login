@@ -1,0 +1,37 @@
+import React from "react";
+// Importando a biblioteca React.
+
+import { useNavigate } from "react-router-dom";
+// Importando a função useNavigate do React Router para permitir a navegação entre as páginas.
+
+import Button from "../../components/Button";
+// Importando o componente Button.
+
+import useAuth from "../../hooks/useAuth";
+// Importando o hook personalizado useAuth para acessar o contexto de autenticação.
+
+import * as C from "./styles";
+// Importando estilos específicos para este componente.
+
+const Home = () => {
+  // Definindo um componente chamado "Home".
+
+  const { signout } = useAuth();
+  // Utilizando o hook useAuth para acessar a função de logout (signout) do contexto de autenticação.
+
+  const navigate = useNavigate();
+  // Usando a função useNavigate para permitir a navegação entre as páginas.
+
+  return (
+    <C.Container>
+      {/* Renderizando um contêiner com estilos específicos. */}
+      <C.Title>Home</C.Title>
+      {/* Renderizando um título "Home". */}
+      <Button Text="Sair" onClick={() => [signout(), navigate("/")]} />
+      {/* Renderizando um botão de "Sair" que chama a função de logout (signout) e navega para a página inicial ("/"). */}
+    </C.Container>
+  );
+};
+
+export default Home;
+// Exportando o componente "Home" para que ele possa ser usado em outras partes do aplicativo.
